@@ -5,11 +5,11 @@ from qgis.PyQt.QtCore import QObject, QVariant
 from qgis.core import QgsField, QgsFields
 
 flds = QgsFields()
-flds.append(QgsField('id', QVariant.Int))
+flds.append(QgsField('id', int(QVariant.Int)))
 
 flds2 = QgsFields(flds)
-flds2.append(QgsField('topology', QVariant.String))
-flds2.append(QgsField('adj_edges', QVariant.String))
+flds2.append(QgsField('topology', int(QVariant.String)))
+flds2.append(QgsField('adj_edges', int(QVariant.String)))
 
 
 class sNode(QObject):

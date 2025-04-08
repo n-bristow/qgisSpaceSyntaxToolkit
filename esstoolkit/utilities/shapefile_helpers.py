@@ -147,7 +147,7 @@ def create_shapefile_full_layer_data_provider(path, name, srid, attributes, type
 
     # create the required fields
     for i, attr in enumerate(attributes):
-        pr.addAttributes([QgsField(attr, types[i])])
+        pr.addAttributes([QgsField(attr, int(types[i]))])
     vl.commitChanges()
     # add features by iterating the values
     feat = QgsFeature()

@@ -104,9 +104,9 @@ class CatchmentAnalysis(QObject):
 
                 if self.settings['output polygon check']:
                     new_fields = QgsFields()
-                    new_fields.append(QgsField('id', QVariant.Int))
-                    new_fields.append(QgsField('origin', QVariant.String))
-                    new_fields.append(QgsField('distance', QVariant.Int))
+                    new_fields.append(QgsField(name='id', type=int(QVariant.Int)))
+                    new_fields.append(QgsField(name='origin', type=int(QVariant.String)))
+                    new_fields.append(QgsField(name='distance', type=int(QVariant.Int)))
 
                     output_polygon_features = self.polygon_writer(
                         catchment_points,
@@ -340,7 +340,7 @@ class CatchmentAnalysis(QObject):
         else:
             self.names = list(range(0, len(origins)))
 
-        self.network_fields.append(QgsField('min_dist', QVariant.Int))
+        self.network_fields.append(QgsField(name='min_dist', type=int(QVariant.Int)))
 
         return self.network_fields
 

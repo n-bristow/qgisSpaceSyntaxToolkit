@@ -56,7 +56,8 @@ def createTempLayer(name, geometry, srid, attributes, types):
         vlayer.startEditing()
         fields = []
         for i, att in enumerate(attributes):
-            fields.append(QgsField(att, types[i]))
+            qtype = int(types[i])  # Ensure it's a plain int
+            fields.append(QgsField(name=att, type=qtype))
 
         # add the fields to the layer
         try:

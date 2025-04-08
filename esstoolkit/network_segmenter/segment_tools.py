@@ -40,7 +40,7 @@ class segmentor(QObject):
         self.id = -1
 
         fields = QgsFields()
-        fields.append(QgsField('type', QVariant.String))
+        fields.append(QgsField('type', int(QVariant.String)))
         self.break_f = prototype_feature(['break point'], fields)
         self.invalid_unlink_f = prototype_feature(['invalid unlink'], fields)
         self.stub_f = prototype_feature(['stub'], fields)

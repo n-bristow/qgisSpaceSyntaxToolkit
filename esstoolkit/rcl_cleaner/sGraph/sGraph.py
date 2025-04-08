@@ -29,12 +29,12 @@ except ImportError:
 
 unlink_feat = QgsFeature()
 unlink_flds = QgsFields()
-unlink_flds.append(QgsField('id', QVariant.Int))
+unlink_flds.append(QgsField('id', int(QVariant.Int)))
 unlink_feat.setFields(unlink_flds)
 
 error_feat = QgsFeature()
 error_flds = QgsFields()
-error_flds.append(QgsField('error_type', QVariant.String))
+error_flds.append(QgsField('error_type', int(QVariant.String)))
 error_feat.setFields(error_flds)
 
 

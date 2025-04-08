@@ -19,7 +19,7 @@ points = []
 multiparts = []
 error_feat = QgsFeature()
 error_flds = QgsFields()
-error_flds.append(QgsField('error_type', QVariant.String))
+error_flds.append(QgsField('error_type', int(QVariant.String)))
 error_feat.setFields(error_flds)
 
 
