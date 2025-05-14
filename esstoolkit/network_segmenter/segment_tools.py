@@ -6,7 +6,7 @@ import traceback
 from builtins import range
 from builtins import zip
 
-from qgis.PyQt.QtCore import QObject, pyqtSignal, QVariant
+from qgis.PyQt.QtCore import QObject, pyqtSignal, QVariant, QMetaType
 from qgis.core import QgsSpatialIndex, QgsGeometry, QgsDistanceArea, QgsFeature, QgsField, QgsFields, NULL, QgsWkbTypes
 
 try:
@@ -40,7 +40,7 @@ class segmentor(QObject):
         self.id = -1
 
         fields = QgsFields()
-        fields.append(QgsField('type', int(QVariant.String)))
+        fields.append(QgsField('type', QMetaType.Type.QString)) # int(QVariant.String)))
         self.break_f = prototype_feature(['break point'], fields)
         self.invalid_unlink_f = prototype_feature(['invalid unlink'], fields)
         self.stub_f = prototype_feature(['stub'], fields)

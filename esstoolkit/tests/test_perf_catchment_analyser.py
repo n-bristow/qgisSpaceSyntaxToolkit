@@ -1,5 +1,5 @@
 # INPUT
-from qgis.PyQt.QtCore import QVariant
+from qgis.PyQt.QtCore import QVariant, QMetaType
 from qgis.analysis import QgsGraphBuilder
 from qgis.core import (QgsSpatialIndex, QgsGeometry, QgsFeature, QgsFields, QgsField, QgsWkbTypes)
 
@@ -120,9 +120,9 @@ network = catchment.settings['network']
 
 if catchment.settings['output polygon check']:
     new_fields = QgsFields()
-    new_fields.append(QgsField('id', QVariant.Int))
-    new_fields.append(QgsField('origin', QVariant.String))
-    new_fields.append(QgsField('distance', QVariant.Int))
+    new_fields.append(QgsField('id', QMetaType.Type.Int)) # QVariant.Int))
+    new_fields.append(QgsField('origin', QMetaType.Type.QString)) # QVariant.String))
+    new_fields.append(QgsField('distance', QMetaType.Type.Int)) # QVariant.Int))
     output_polygon = uf.to_layer(new_fields, network.crs(), network.dataProvider().encoding(),
                                  'Polygon', catchment.settings['layer_type'],
                                  catchment.settings['output path'][0])

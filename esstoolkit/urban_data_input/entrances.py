@@ -19,7 +19,7 @@ import os
 # Import the PyQt and QGIS libraries
 from builtins import str
 
-from qgis.PyQt.QtCore import (QObject, QVariant)
+from qgis.PyQt.QtCore import (QObject, QVariant, QMetaType)
 from qgis.core import (QgsProject, QgsVectorLayer, QgsField, QgsCoordinateReferenceSystem, QgsVectorFileWriter,
                        QgsDataSourceUri, QgsVectorLayerExporter, QgsMessageLog, QgsMapLayer, Qgis)
 
@@ -102,10 +102,10 @@ class EntranceTool(QObject):
         vl = QgsVectorLayer("Point?crs=", "memory:Entrances", "memory")
 
         provider = vl.dataProvider()
-        provider.addAttributes([QgsField(EntranceTool.id_attribute, QVariant.Int),
-                                QgsField(EntranceTool.category_attribute, QVariant.String),
-                                QgsField(EntranceTool.subcat_attribute, QVariant.String),
-                                QgsField(EntranceTool.level_attribute, QVariant.Double)])
+        provider.addAttributes([QgsField(EntranceTool.id_attribute, QMetaType.Type.Int), # QVariant.Int),
+                                QgsField(EntranceTool.category_attribute, QMetaType.Type.QString), # QVariant.String),
+                                QgsField(EntranceTool.subcat_attribute, QMetaType.Type.QString), # QVariant.String),
+                                QgsField(EntranceTool.level_attribute, QMetaType.Type.Double)]) # QVariant.Double)])
         if vl.crs().toWkt() == "":
             vl.setCrs(QgsProject.instance().crs())
         vl.updateFields()

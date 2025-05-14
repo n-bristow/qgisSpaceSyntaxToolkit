@@ -20,7 +20,7 @@ import os.path
 from builtins import str
 from builtins import zip
 
-from qgis.PyQt.QtCore import (QVariant)
+from qgis.PyQt.QtCore import (QVariant, QMetaType)
 from qgis.PyQt.QtGui import QColor
 from qgis.core import (QgsProject, QgsMapLayer, QgsDataSourceUri, QgsVectorLayer, QgsVectorDataProvider, QgsField,
                        QgsPoint, QgsGeometry, QgsFeature, QgsFeatureRequest, QgsSpatialIndex, NULL, QgsWkbTypes)

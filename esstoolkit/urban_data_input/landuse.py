@@ -19,7 +19,7 @@ import os
 # Import the PyQt and QGIS libraries
 from builtins import str
 
-from qgis.PyQt.QtCore import (QObject, QVariant)
+from qgis.PyQt.QtCore import (QObject, QVariant, QMetaType)
 from qgis.core import (Qgis, QgsField, QgsProject, QgsMapLayer, QgsVectorLayer, QgsFeature, QgsVectorFileWriter,
                        QgsDataSourceUri, QgsVectorLayerExporter, QgsMessageLog, QgsFeatureRequest, NULL)
 
@@ -182,29 +182,29 @@ class LanduseTool(QObject):
             provider = vl.dataProvider()
             # provider.addAttributes([])
 
-            ground_floor_attributes = [QgsField(LanduseTool.lu_id_attribute, QVariant.Int),
-                                       QgsField(LanduseTool.floors_attribute, QVariant.Int),
-                                       QgsField(LanduseTool.area_attribute, QVariant.Double),
-                                       QgsField(LanduseTool.gf_cat_attribute, QVariant.String),
-                                       QgsField(LanduseTool.gf_subcat_attribute, QVariant.String),
-                                       QgsField(LanduseTool.gf_ssx_attribute, QVariant.String),
-                                       QgsField(LanduseTool.gf_nlud_attribute, QVariant.String),
-                                       QgsField(LanduseTool.gf_tcpa_attribute, QVariant.String),
-                                       QgsField(LanduseTool.gf_descrip_attribute, QVariant.String)]
+            ground_floor_attributes = [QgsField(LanduseTool.lu_id_attribute, QMetaType.Type.Int), # QVariant.Int),
+                                       QgsField(LanduseTool.floors_attribute, QMetaType.Type.Int), # QVariant.Int),
+                                       QgsField(LanduseTool.area_attribute, QMetaType.Type.Double), # QVariant.Double),
+                                       QgsField(LanduseTool.gf_cat_attribute, QMetaType.Type.QString), # QVariant.String),
+                                       QgsField(LanduseTool.gf_subcat_attribute, QMetaType.Type.QString), # QVariant.String),
+                                       QgsField(LanduseTool.gf_ssx_attribute, QMetaType.Type.QString), # QVariant.String),
+                                       QgsField(LanduseTool.gf_nlud_attribute, QMetaType.Type.QString), # QVariant.String),
+                                       QgsField(LanduseTool.gf_tcpa_attribute, QMetaType.Type.QString), # QVariant.String),
+                                       QgsField(LanduseTool.gf_descrip_attribute, QMetaType.Type.QString)] # QVariant.String)]
 
-            lower_floor_attributes = [QgsField(LanduseTool.lf_cat_attribute, QVariant.String),
-                                      QgsField(LanduseTool.lf_subcat_attribute, QVariant.String),
-                                      QgsField(LanduseTool.lf_ssx_attribute, QVariant.String),
-                                      QgsField(LanduseTool.lf_nlud_attribute, QVariant.String),
-                                      QgsField(LanduseTool.lf_tcpa_attribute, QVariant.String),
-                                      QgsField(LanduseTool.lf_descrip_attribute, QVariant.String)]
+            lower_floor_attributes = [QgsField(LanduseTool.lf_cat_attribute, QMetaType.Type.QString), # QVariant.String),
+                                      QgsField(LanduseTool.lf_subcat_attribute, QMetaType.Type.QString), # QVariant.String),
+                                      QgsField(LanduseTool.lf_ssx_attribute, QMetaType.Type.QString), # QVariant.String),
+                                      QgsField(LanduseTool.lf_nlud_attribute, QMetaType.Type.QString), # QVariant.String),
+                                      QgsField(LanduseTool.lf_tcpa_attribute, QMetaType.Type.QString), # QVariant.String),
+                                      QgsField(LanduseTool.lf_descrip_attribute, QMetaType.Type.QString)] # QVariant.String)]
 
-            upper_floor_attributes = [QgsField(LanduseTool.uf_cat_attribute, QVariant.String),
-                                      QgsField(LanduseTool.uf_subcat_attribute, QVariant.String),
-                                      QgsField(LanduseTool.uf_ssx_attribute, QVariant.String),
-                                      QgsField(LanduseTool.uf_nlud_attribute, QVariant.String),
-                                      QgsField(LanduseTool.uf_ntcpa_attribute, QVariant.String),
-                                      QgsField(LanduseTool.uf_descrip_attribute, QVariant.String)]
+            upper_floor_attributes = [QgsField(LanduseTool.uf_cat_attribute, QMetaType.Type.QString), # QVariant.String),
+                                      QgsField(LanduseTool.uf_subcat_attribute, QMetaType.Type.QString), # QVariant.String),
+                                      QgsField(LanduseTool.uf_ssx_attribute, QMetaType.Type.QString), # QVariant.String),
+                                      QgsField(LanduseTool.uf_nlud_attribute, QMetaType.Type.QString), # QVariant.String),
+                                      QgsField(LanduseTool.uf_ntcpa_attribute, QMetaType.Type.QString), # QVariant.String),
+                                      QgsField(LanduseTool.uf_descrip_attribute, QMetaType.Type.QString)] # QVariant.String)]
 
             if self.ludlg.LUincGFcheckBox.checkState() == 2:
                 provider.addAttributes(ground_floor_attributes)
@@ -223,7 +223,7 @@ class LanduseTool(QObject):
             if self.ludlg.createNewLUFileCheckBox.isChecked():
 
                 null_attr = []
-                provider.addAttributes([QgsField('build_id', QVariant.String)])
+                provider.addAttributes([QgsField('build_id', QMetaType.Type.QString)]) # QVariant.String)])
 
                 if self.ludlg.LUincGFcheckBox.checkState() == 2:
                     # TODO: has removed [QgsField("Build_ID", QVariant.Int)] +

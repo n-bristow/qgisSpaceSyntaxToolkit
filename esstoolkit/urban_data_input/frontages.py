@@ -20,7 +20,7 @@ import os
 from builtins import str
 from builtins import zip
 
-from qgis.PyQt.QtCore import (QObject, QVariant)
+from qgis.PyQt.QtCore import (QObject, QVariant, QMetaType)
 from qgis.core import (QgsProject, QgsMapLayer, QgsVectorLayer, QgsField, QgsFeature, QgsGeometry, QgsVectorFileWriter,
                        QgsDataSourceUri, QgsVectorLayerExporter, QgsMessageLog, QgsFeatureRequest,
                        QgsVectorDataProvider, NULL, QgsWkbTypes, Qgis)
@@ -187,10 +187,10 @@ class FrontageTool(QObject):
         if vl.crs().toWkt() == "":
             vl.setCrs(QgsProject.instance().crs())
         provider = vl.dataProvider()
-        provider.addAttributes([QgsField(FrontageTool.id_attribute, QVariant.Int),
-                                QgsField(FrontageTool.group_attribute, QVariant.String),
-                                QgsField(FrontageTool.type_attribute, QVariant.String),
-                                QgsField(FrontageTool.length_attribute, QVariant.Double)])
+        provider.addAttributes([QgsField(FrontageTool.id_attribute, QMetaType.Type.Int), # QVariant.Int),
+                                QgsField(FrontageTool.group_attribute, QMetaType.Type.QString), # QVariant.String),
+                                QgsField(FrontageTool.type_attribute, QMetaType.Type.QString), # QVariant.String),
+                                QgsField(FrontageTool.length_attribute, QMetaType.Type.Double)]) # QVariant.Double)])
         vl.updateFields()
 
         # use building layer - explode
@@ -199,7 +199,7 @@ class FrontageTool(QObject):
             exploded_features = []
             i = 1
             for f in building_layer.getFeatures():
-                points = f.geometry().asPolygon()[0]  # get list of points
+                points = f.geometry().asPolygon()[0] # get list of points
                 for (p1, p2) in zip(points[:-1], points[1:]):
                     i += 1
                     feat = QgsFeature()
@@ -381,7 +381,7 @@ class FrontageTool(QObject):
         # print buildingID
         newColumn = "b_" + buildingID
         frontlayer_pr = frontlayer.dataProvider()
-        frontlayer_pr.addAttributes([QgsField(newColumn, QVariant.Int)])
+        frontlayer_pr.addAttributes([QgsField(newColumn, QMetaType.Type.Int)]) # QVariant.Int)])
         frontlayer.commitChanges()
         frontlayer.startEditing()
         frontlayer_caps = frontlayer_pr.capabilities()

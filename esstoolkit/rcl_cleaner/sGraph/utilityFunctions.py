@@ -7,7 +7,7 @@ from collections import defaultdict
 
 import psycopg2
 from psycopg2.extensions import AsIs
-from qgis.PyQt.QtCore import QVariant
+from qgis.PyQt.QtCore import QVariant, QMetaType
 from qgis.core import QgsFields, QgsField, QgsGeometry, QgsFeature, QgsVectorLayer, QgsVectorFileWriter, NULL, \
     QgsWkbTypes, QgsCoordinateTransformContext
 
@@ -19,7 +19,7 @@ points = []
 multiparts = []
 error_feat = QgsFeature()
 error_flds = QgsFields()
-error_flds.append(QgsField('error_type', int(QVariant.String)))
+error_flds.append(QgsField('error_type', QMetaType.Type.QString)) # int(QVariant.String)))
 error_feat.setFields(error_flds)
 
 

@@ -6,7 +6,7 @@ import itertools
 from builtins import zip
 from collections import defaultdict
 
-from qgis.PyQt.QtCore import (QObject, pyqtSignal, QVariant)
+from qgis.PyQt.QtCore import (QObject, pyqtSignal, QVariant, QMetaType)
 from qgis.core import (QgsGeometry, QgsSpatialIndex, QgsFields, QgsField, QgsFeature, QgsMessageLog, Qgis, NULL,
                        QgsWkbTypes)
 
@@ -29,12 +29,12 @@ except ImportError:
 
 unlink_feat = QgsFeature()
 unlink_flds = QgsFields()
-unlink_flds.append(QgsField('id', int(QVariant.Int)))
+unlink_flds.append(QgsField('id', QMetaType.Type.Int)) # int(QVariant.Int)))
 unlink_feat.setFields(unlink_flds)
 
 error_feat = QgsFeature()
 error_flds = QgsFields()
-error_flds.append(QgsField('error_type', int(QVariant.String)))
+error_flds.append(QgsField('error_type', QMetaType.Type.QString)) # int(QVariant.String)))
 error_feat.setFields(error_flds)
 
 
